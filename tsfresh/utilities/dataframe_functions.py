@@ -458,6 +458,12 @@ def roll_time_series(
 
     if min_timeshift < 0:
         raise ValueError("min_timeshift needs to be positive or zero!")
+    
+    if max_timeshift is not None:
+        if max_timeshift < min_timeshift:
+            raise ValueError(
+                f"max_timeshift ({max_timeshift}) needs to be greater or equal than min_timeshift ({min_timeshift})"
+            )
 
     if isinstance(df_or_dict, dict):
         if column_kind is not None:
